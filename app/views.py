@@ -81,7 +81,7 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
-  if query ==  "" or query is None or request.referrer is None:
+  if query ==  "" or query is None:
     return redirect('/index')
   
   q1Invalid = False

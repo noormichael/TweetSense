@@ -158,5 +158,5 @@ def hof():
   
 @app.errorhandler(500)
 def internal_error(error):
-    if app.debug is not True:   
-      return "500 error"
+    db.session.rollback()
+    return render_template('500.html'), 500

@@ -155,3 +155,7 @@ def random():
 @app.route('/hof')
 def hof():
   return render_template('hof.html')
+  
+@app.errorhandler(500)
+def internal_error(error):
+    return "500 error"

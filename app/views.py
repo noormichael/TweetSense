@@ -80,8 +80,8 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
-  #if query ==  "" or query is None or request.referrer is None:
-    #return query
+  if query == "" or query is None or request.referrer is None:
+    return query
     #return redirect('/index')
   
   q1Invalid = False

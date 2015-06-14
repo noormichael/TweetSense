@@ -22,6 +22,7 @@ def setGraphs(form):
 
   count = 30
   
+  return query
 
   t = Twitter()
 

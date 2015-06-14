@@ -84,12 +84,6 @@ def results():
   #if query ==  "" or query is None or request.referrer is None:
     #return query
     #return redirect('/index')
-  if query ==  "":
-    return "empty quotes"
-  elif query is None:
-    return "none"
-  elif request.referrer is None:
-    return "none"
   
   q1Invalid = False
   q2Invalid = False

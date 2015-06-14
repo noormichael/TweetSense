@@ -85,6 +85,8 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
+  return query
+  
   if query == "" or query is None:
     return query
     #return redirect('/index')

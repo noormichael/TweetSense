@@ -85,8 +85,10 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
-  if query == "" or query is None:
-    return query
+  if query == "":
+    return "empty string"
+  elif query is None:
+    return "none"
     #return redirect('/index')
   
   q1Invalid = False

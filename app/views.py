@@ -49,6 +49,10 @@ def setGraphs(form):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+  global query
+  global query2
+  global d
+  global d2
   query = ""
   query2 = ""
   q1Invalid = False

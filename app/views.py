@@ -8,6 +8,8 @@ from RandomTopic import get_random_topic
 
 d = [[]]
 d2 = [[]]
+query = ""
+query2 = ""
 
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
@@ -51,8 +53,6 @@ def index():
   global query2
   global d
   global d2
-  query = ""
-  query2 = ""
   q1Invalid = False
   q2Invaled = False
   form = LoginForm()

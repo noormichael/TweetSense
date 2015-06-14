@@ -8,8 +8,6 @@ from RandomTopic import get_random_topic
 
 d = [[]]
 d2 = [[]]
-query = ""
-query2 = ""
 
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
@@ -61,7 +59,6 @@ def index():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
-    return query
     q1Invalid, q2Invaled = setGraphs(form)
     # print q1Invalid, q2Invaled
     if not q1Invalid and not q2Invaled:
@@ -78,6 +75,8 @@ def results():
   global query2
   global d
   global d2
+    
+  return query
 
   # print ""
   # print "/results:"

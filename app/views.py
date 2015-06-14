@@ -77,8 +77,6 @@ def results():
   global query2
   global d
   global d2
-    
-  return query
 
   # print ""
   # print "/results:"

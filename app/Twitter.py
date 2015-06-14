@@ -20,7 +20,7 @@ class Twitter:
 	tweets = []
 
 	def __init__(self):
-		auth = tweepy.OAuthHandler(self._consumer_key, self._consumer_secret, secure=True)
+		auth = tweepy.OAuthHandler(self._consumer_key, self._consumer_secret)
 		auth.set_access_token(self._access_token, self._access_token_secret)
 
 		self._twitter_api = tweepy.API(auth)

@@ -53,6 +53,10 @@ query2 = ""
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+  global query
+  global query2
+  global d
+  global d2
   q1Invalid = False
   q2Invaled = False
   form = LoginForm()

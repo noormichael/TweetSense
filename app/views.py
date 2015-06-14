@@ -148,7 +148,7 @@ def random():
       form.opQuery.data=t2
     else:
       if form.query != "" or form.opQuery != "":
-        q1Invalid, q2Invaled = setGraphs(form)
+        q1Invalid, q2Invaled = setGraphs(form, t1, t2)
         
         if not q1Invalid and not q2Invaled:
           return redirect('/results')

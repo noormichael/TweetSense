@@ -61,8 +61,9 @@ def index():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
+    return query
     q1Invalid, q2Invaled = setGraphs(form)
-    print q1Invalid, q2Invaled
+    # print q1Invalid, q2Invaled
     if not q1Invalid and not q2Invaled:
       return redirect('/results')
   return render_template('index.html',
@@ -84,8 +85,6 @@ def results():
   # print "Query 2: %s" % query2
   # print "d: ",d
   # print "d2: ",d2
-  
-  return query
   
   if query == "" or query is None:
     return query

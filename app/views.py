@@ -57,7 +57,7 @@ def index():
   form = LoginForm()
   if form.validate_on_submit():
       q1Invalid, q2Invaled = setGraphs(form)
-      # print q1Invalid, q2Invaled
+      print q1Invalid, q2Invaled
       if not q1Invalid and not q2Invaled:
         return redirect('/results')
   return render_template('index.html',

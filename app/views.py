@@ -24,8 +24,6 @@ def setGraphs(form, q, q2):
   
   query = q
   query2 = q2
-  
-  return query
 
   t = Twitter()
 

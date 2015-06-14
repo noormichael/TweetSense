@@ -93,9 +93,10 @@ def results():
   q2Invalid = False
   form = LoginForm()
   if form.validate_on_submit():
-      q1Invalid, q2Invalid = setGraphs(form)
-
-      return redirect('/results')
+    query = str(form.query.data.replace('#','').strip())
+    query2 = str(form.opQuery.data.replace('#','').strip())
+    q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    return redirect('/results')
 
   dataList = listtups_to_listlists(d)
   if not query2 == "":

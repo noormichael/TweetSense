@@ -14,13 +14,16 @@ query2 = ""
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
-def setGraphs(form):
+def setGraphs(form, q, q2):
   global query
   global query2
   global d
   global d2
 
   count = 30
+  
+  query = q
+  query2 = q2
   
   return query
 
@@ -60,7 +63,7 @@ def index():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
-    q1Invalid, q2Invaled = setGraphs(form)
+    q1Invalid, q2Invaled = setGraphs(form, query, query2)
     # print q1Invalid, q2Invaled
     if not q1Invalid and not q2Invaled:
       return redirect('/results')

@@ -258,7 +258,7 @@
     
     for(i=0;i<=companydata.length-1;i++){
       subdata2=companydata[i];
-      subdata3=companydata2[i]; //subdata now takes the form of one element from the array companydata
+      if(companydata2!=undefined){subdata3=companydata2[i];} //subdata now takes the form of one element from the array companydata
       timedata2.push(subdata2[0]); //Inserts first element from companydata[i], which would be the time index
       ratingdata2.push(subdata2[1]);
       ratingdata3.push(subdata3[1]); 

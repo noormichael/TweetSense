@@ -21,8 +21,7 @@ def setGraphs(form):
   global d2
 
   count = 30
-  query = str(form.query.data.replace('#','').strip())
-  query2 = str(form.opQuery.data.replace('#','').strip())
+  
 
   t = Twitter()
 
@@ -56,10 +55,12 @@ def index():
   q2Invaled = False
   form = LoginForm()
   if form.validate_on_submit():
-      q1Invalid, q2Invaled = setGraphs(form)
-      print q1Invalid, q2Invaled
-      if not q1Invalid and not q2Invaled:
-        return redirect('/results')
+    query = str(form.query.data.replace('#','').strip())
+    query2 = str(form.opQuery.data.replace('#','').strip())
+    q1Invalid, q2Invaled = setGraphs(form)
+    print q1Invalid, q2Invaled
+    if not q1Invalid and not q2Invaled:
+      return redirect('/results')
   return render_template('index.html',
                          title='Home',
                          q1Invalid=q1Invalid,

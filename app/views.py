@@ -94,6 +94,7 @@ def results():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
+    return query
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
     return redirect('/results')
 

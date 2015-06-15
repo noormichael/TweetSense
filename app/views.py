@@ -61,14 +61,14 @@ def index():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
-    q1Invalid, q2Invaled = setGraphs(form, query, query2)
+    q1Invalid, q2Invalid = setGraphs(form, query, query2)
     # print q1Invalid, q2Invaled
-    if not q1Invalid and not q2Invaled:
+    if not q1Invalid and not q2Invalid:
       return redirect('/results')
   return render_template('index.html',
                          title='Home',
                          q1Invalid=q1Invalid,
-                         q2Invalid=q2Invaled,
+                         q2Invalid=q2Invalid,
                          form=form)
 
 @app.route('/results', methods=['GET', 'POST'])

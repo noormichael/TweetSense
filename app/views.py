@@ -56,13 +56,13 @@ def index():
   global d
   global d2
   q1Invalid = False
-  q2Invaled = False
+  q2Invalid = False
   form = LoginForm()
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
-    # print q1Invalid, q2Invaled
+    # print q1Invalid, q2Invalid
     if not q1Invalid and not q2Invalid:
       return redirect('/results')
   return render_template('index.html',

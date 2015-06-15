@@ -85,16 +85,14 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
-  if query == "" or query is None:
-    return redirect('/index')
-  
   q1Invalid = False
   q2Invalid = False
   form = LoginForm()
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
-    return query
+    if query == "" or query is None:
+      return redirect('/index')
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
     return redirect('/results')
 

@@ -5,7 +5,8 @@ from Twitter import Twitter
 from Analysis import analyze
 from RandomTopic import get_random_topic
 
-
+query = ""
+query2 = ""
 d = [[]]
 d2 = [[]]
 

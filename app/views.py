@@ -26,21 +26,10 @@ def setGraphs(form, q, q2):
 
   t = Twitter()
 
-  if not t.checkTerm(query):
-    if not query2 == "" and not t.checkTerm(query2):
-      return (True, True)
-    return (True, False)
-
-  if not query2 == "":
-    if not t.checkTerm(query2):
-      return (False, True)
-
   a = t.getTweets(query, count)
   d = analyze(a, [float(i) for i in range(-10, +3)])
 
   if not query2 == "":
-    if not t.checkTerm(query2):
-      return (False, True)
     a = t.getTweets(query2, count)
     d2 = analyze(a, [float(i) for i in range(-10, +3)])
 

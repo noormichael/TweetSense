@@ -90,8 +90,6 @@ def results():
   query = session['qu']
   if not query2 == "":
     query2 = session['qu2']
-    
-  return query
   
   q1Invalid = False
   q2Invalid = False
@@ -105,6 +103,7 @@ def results():
     session['qu'] = query
     if not query2 == "":
       session['qu2'] = query2
+    return query
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)

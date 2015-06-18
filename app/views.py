@@ -36,13 +36,13 @@ def setGraphs(form, q, q2):
       return (False, True)
 
   a = t.getTweets(query, count)
-  d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+  d = analyze(a, [float(i) for i in range(-10, +3)])
 
   if not query2 == "":
     if not t.checkTerm(query2):
       return (False, True)
     a = t.getTweets(query2, count)
-    d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+    d2 = analyze(a, [float(i) for i in range(-10, +3)])
 
   return (False, False)
 

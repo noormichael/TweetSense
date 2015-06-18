@@ -62,7 +62,6 @@ def index():
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
     # print q1Invalid, q2Invalid
     if not q1Invalid and not q2Invalid:
-      return "nope"
       return redirect('/results')
   
   return render_template('index.html',
@@ -84,6 +83,8 @@ def results():
   # print "Query 2: %s" % query2
   # print "d: ",d
   # print "d2: ",d2
+  
+  return query
   
   q1Invalid = False
   q2Invalid = False

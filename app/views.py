@@ -37,14 +37,12 @@ def setGraphs(form, q, q2):
 
   a = t.getTweets(query, count)
   d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
-  session['d'] = d
 
   if not query2 == "":
     if not t.checkTerm(query2):
       return (False, True)
     a = t.getTweets(query2, count)
     d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
-    session['d2'] = d2
 
   return (False, False)
 
@@ -107,13 +105,13 @@ def results():
       session['qu2'] = query2
     return redirect('/results')
 
-  dataList = listtups_to_listlists(session['d'])
+  dataList = listtups_to_listlists(d)
   if not query2 == "":
     
-    dataList2 = listtups_to_listlists(session['d2'])
+    dataList2 = listtups_to_listlists(d2)
 
-    session['d2'] = None
-    session['d'] = None
+    d2 = None
+    d = None
     return render_template('results.html',
                            title='Results',
                            q=query,
@@ -123,7 +121,7 @@ def results():
                            q1Invalid=q1Invalid,
                            q2Invalid=q2Invalid,
                            form=form)
-  session['d'] = None
+  d = None
   return render_template('results.html',
                            title='Results',
                            q=query,

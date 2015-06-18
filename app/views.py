@@ -60,9 +60,9 @@ def index():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
-    # works till here
     # print q1Invalid, q2Invalid
     if not q1Invalid and not q2Invalid:
+      return "nope"
       return redirect('/results')
   
   return render_template('index.html',

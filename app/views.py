@@ -90,6 +90,8 @@ def results():
   query = session['qu']
   if not query2 == "":
     query2 = session['qu2']
+    
+  return query
   
   q1Invalid = False
   q2Invalid = False

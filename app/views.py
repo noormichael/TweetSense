@@ -103,7 +103,6 @@ def results():
     session['qu'] = query
     if not query2 == "":
       session['qu2'] = query2
-    return query
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)

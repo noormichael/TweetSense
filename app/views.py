@@ -60,6 +60,9 @@ def index():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    session['qu'] = query
+    if not query2 == "":
+      session['qu2'] = query2
     # print q1Invalid, q2Invalid
     if not q1Invalid and not q2Invalid:
       return redirect('/results')
@@ -83,7 +86,11 @@ def results():
   # print "Query 2: %s" % query2
   # print "d: ",d
   # print "d2: ",d2
-    
+  
+  query = session['qu']
+  if not query2 == "":
+    query2 = session['qu2']
+  
   return query
   
   q1Invalid = False
@@ -95,6 +102,9 @@ def results():
     if query == "" or query is None:
       return redirect('/index')
     q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    session['qu'] = query
+    if not query2 == "":
+      session['qu2'] = query2
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)

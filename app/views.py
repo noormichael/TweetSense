@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, session
 from app import app
 from .forms import LoginForm, RandomForm
 from Twitter import Twitter

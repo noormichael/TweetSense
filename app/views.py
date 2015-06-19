@@ -37,14 +37,12 @@ def setGraphs(form, q, q2):
 
   a = t.getTweets(query, count)
   d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
-  d = d
 
   if not query2 == "":
     if not t.checkTerm(query2):
       return (False, True)
     a = t.getTweets(query2, count)
     d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
-    d2 = d2
 
   return (False, False)
 
@@ -53,6 +51,8 @@ def setGraphs(form, q, q2):
 def index():
   global query
   global query2
+  global d
+  global d2
   q1Invalid = False
   q2Invalid = False
   form = LoginForm()

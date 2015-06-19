@@ -16,8 +16,6 @@ def listtups_to_listlists(lt):
 def setGraphs(form, q, q2):
   global query
   global query2
-  global d
-  global d2
 
   count = 30
   
@@ -51,8 +49,6 @@ def setGraphs(form, q, q2):
 def index():
   global query
   global query2
-  global d
-  global d2
   q1Invalid = False
   q2Invalid = False
   form = LoginForm()
@@ -77,8 +73,6 @@ def index():
 def results():
   global query
   global query2
-  global d
-  global d2
 
   # print ""
   # print "/results:"
@@ -86,8 +80,6 @@ def results():
   # print "Query 2: %s" % query2
   # print "d: ",d
   # print "d2: ",d2
-  
-  return d
   
   query = session['qu']
   if not query2 == "":

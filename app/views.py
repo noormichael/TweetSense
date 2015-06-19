@@ -7,8 +7,8 @@ from RandomTopic import get_random_topic
 
 query = ""
 query2 = ""
-session['d'] = [[]]
-session['d2'] = [[]]
+d = [[]]
+d2 = [[]]
 
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
@@ -16,6 +16,8 @@ def listtups_to_listlists(lt):
 def setGraphs(form, q, q2):
   global query
   global query2
+  global d
+  global d2
 
   count = 30
   
@@ -34,13 +36,15 @@ def setGraphs(form, q, q2):
       return (False, True)
 
   a = t.getTweets(query, count)
-  session['d'] = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+  d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+  session['d'] = d
 
   if not query2 == "":
     if not t.checkTerm(query2):
       return (False, True)
     a = t.getTweets(query2, count)
-    session['d2'] = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+    d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+    session['d2'] = d2
 
   return (False, False)
 
@@ -73,6 +77,8 @@ def index():
 def results():
   global query
   global query2
+  global d
+  global d2
 
   # print ""
   # print "/results:"
@@ -104,8 +110,8 @@ def results():
     
     dataList2 = listtups_to_listlists(session['d2'])
 
-    session['d2'] = None
-    session['d'] = None
+    d2 = None
+    d = None
     return render_template('results.html',
                            title='Results',
                            q=query,
@@ -115,7 +121,7 @@ def results():
                            q1Invalid=q1Invalid,
                            q2Invalid=q2Invalid,
                            form=form)
-  session['d'] = None
+  d = None
   return render_template('results.html',
                            title='Results',
                            q=query,

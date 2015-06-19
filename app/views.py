@@ -87,6 +87,8 @@ def results():
   # print "d: ",d
   # print "d2: ",d2
   
+  return d
+  
   query = session['qu']
   if not query2 == "":
     query2 = session['qu2']

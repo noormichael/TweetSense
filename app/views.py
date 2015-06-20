@@ -91,7 +91,7 @@ def results():
   if not query2 == "":
     query2 = session['qu2']
     
-  return result = "\n".join("\t".join(map(str,l)) for l in d)
+  # return result = "\n".join("\t".join(map(str,l)) for l in d)
   
   q1Invalid = False
   q2Invalid = False

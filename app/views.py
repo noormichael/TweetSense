@@ -113,8 +113,8 @@ def results():
     
     dataList2 = listtups_to_listlists(d2)
 
-    d2 = None
-    d = None
+    d2 = [[]]
+    d = [[]]
     return render_template('results.html',
                            title='Results',
                            q=query,
@@ -124,7 +124,7 @@ def results():
                            q1Invalid=q1Invalid,
                            q2Invalid=q2Invalid,
                            form=form)
-  d = None
+  d = [[]]
   return render_template('results.html',
                            title='Results',
                            q=query,

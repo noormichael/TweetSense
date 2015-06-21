@@ -64,6 +64,8 @@ def index():
     if not query2 == "":
       session['qu2'] = query2
     
+    t = Twitter()
+    
     if not t.checkTerm(query):
       return render_template('index.html',
                          title='Home',

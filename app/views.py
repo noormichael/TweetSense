@@ -9,11 +9,6 @@ def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
 def setGraphs(form, q, q2):
-  global query
-  global query2
-  global d
-  global d2
-  
   query = q
   query2 = q2
 

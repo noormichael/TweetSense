@@ -9,44 +9,78 @@ def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
 def setGraphs(form, q, q2):
+  global query
+  global query2
+  global d
+  global d2
+
+  count = 30
+  
+  query = q
+  query2 = q2
+
   t = Twitter()
 
   if not t.checkTerm(query):
-    if not q == "" and not t.checkTerm(q2):
+    if not query2 == "" and not t.checkTerm(query2):
       return (True, True)
     return (True, False)
 
-  if not q2 == "":
-    if not t.checkTerm(q2):
+  if not query2 == "":
+    if not t.checkTerm(query2):
       return (False, True)
 
-  if not q2 == "":
-    if not t.checkTerm(q2):
+  a = t.getTweets(query, count)
+  d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+
+  if not query2 == "":
+    if not t.checkTerm(query2):
       return (False, True)
+    a = t.getTweets(query2, count)
+    d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
 
   return (False, False)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-  q1Invalid = False
-  q2Invalid = False
   session['qu'] = ""
   session['qu2'] = ""
-  
   form = LoginForm()
   if form.validate_on_submit():
     session['qu'] = str(form.query.data.replace('#','').strip())
     session['qu2'] = str(form.opQuery.data.replace('#','').strip())
-    q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
+    # q1Invalid, q2Invalid = setGraphs(form, query, query2)
     
-    if not q1Invalid and not q2Invalid:
-      return redirect('/results')
-        
+    t = Twitter()
+    
+    if not t.checkTerm(session['qu']):
+      if not session['qu2'] == "" and not t.checkTerm(session['q2']):
+        return render_template('index.html',
+                         title='Home',
+                         form=form,
+                         q1Invalid=True,
+                         q2Invalid=True)
+      return render_template('index.html',
+                         title='Home',
+                         form=form,
+                         q1Invalid=True,
+                         q2Invalid=False)
+
+    if not session['qu2'] == "":
+      if not t.checkTerm(session['qu2']):
+        return render_template('index.html',
+                         title='Home',
+                         form=form,
+                         q1Invalid=False,
+                         q2Invalid=True)
+    
+    # print q1Invalid, q2Invalid
+    # if not q1Invalid and not q2Invalid:
+    # IMPLEMENT CHECK ON QUERIES
+    return redirect('/results')
   return render_template('index.html',
                          title='Home',
-                         q1Invalid=q1Invalid,
-                         q2Invalid=q2Invalid,
                          form=form)
 
 @app.route('/results', methods=['GET', 'POST'])
@@ -77,7 +111,39 @@ def results():
     session['qu2'] = str(form.opQuery.data.replace('#','').strip())
     if session['qu'] == "":
       return redirect('/index')
-    q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
+    # q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    t = Twitter()
+    
+    if not t.checkTerm(session['qu']):
+      if not session['qu2'] == "" and not t.checkTerm(session['q2']):
+        return render_template('results.html',
+                           title='Results',
+                           q=query,
+                           q2=query2,
+                           data=dataList,
+                           data2=dataList2,
+                           q1Invalid=True,
+                           q2Invalid=True,
+                           form=form)
+      return render_template('results.html',
+                           title='Results',
+                           q=query,
+                           data=dataList,
+                           q1Invalid=True,
+                           q2Invalid=False,
+                           form=form)
+
+    if not session['qu2'] == "":
+      if not t.checkTerm(session['qu2']):
+        return render_template('results.html',
+                           title='Results',
+                           q=query,
+                           q2=query2,
+                           data=dataList,
+                           data2=dataList2,
+                           q1Invalid=False,
+                           q2Invalid=True,
+                           form=form)
     
     return redirect('/results')
 
@@ -88,20 +154,16 @@ def results():
 
     return render_template('results.html',
                            title='Results',
-                           q=query,
-                           q2=query2,
+                           q=session['qu'],
+                           q2=session['qu2'],
                            data=dataList,
                            data2=dataList2,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
                            form=form)
   
   return render_template('results.html',
                            title='Results',
-                           q=query,
+                           q=session['qu'],
                            data=dataList,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
                            form=form)
 
 @app.route('/about')

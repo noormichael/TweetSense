@@ -65,6 +65,7 @@ def index():
       session['qu2'] = query2
     # print q1Invalid, q2Invalid
     # if not q1Invalid and not q2Invalid:
+    # IMPLEMENT CHECK ON QUERIES
     return redirect('/results')
   
   return render_template('index.html',

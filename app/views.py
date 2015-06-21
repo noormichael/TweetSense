@@ -91,6 +91,9 @@ def results():
   global query2
   global d
   global d2
+  
+  query = ""
+  query2 = ""
 
   # print ""
   # print "/results:"

@@ -14,10 +14,6 @@ def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
 def setGraphs(form, q, q2):
-  global query
-  global query2
-  global d
-  global d2
 
   count = 30
   
@@ -49,10 +45,6 @@ def setGraphs(form, q, q2):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-  global query
-  global query2
-  global d
-  global d2
   q1Invalid = False
   q2Invalid = False
   form = LoginForm()
@@ -87,10 +79,6 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-  global query
-  global query2
-  global d
-  global d2
 
   # print ""
   # print "/results:"

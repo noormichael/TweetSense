@@ -5,11 +5,6 @@ from Twitter import Twitter
 from Analysis import analyze
 from RandomTopic import get_random_topic
 
-query = ""
-query2 = ""
-d = [[]]
-d2 = [[]]
-
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
@@ -45,8 +40,8 @@ def setGraphs(form, q, q2):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-  q1Invalid = False
-  q2Invalid = False
+  query = ""
+  query2 = ""
   form = LoginForm()
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
@@ -79,7 +74,11 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-
+  d = [[]]
+  d2 = [[]]
+  
+  query = ""
+  query2 = ""
   # print ""
   # print "/results:"
   # print "Query 1: %s" % query

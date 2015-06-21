@@ -59,18 +59,16 @@ def index():
   if form.validate_on_submit():
     query = str(form.query.data.replace('#','').strip())
     query2 = str(form.opQuery.data.replace('#','').strip())
-    q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    # q1Invalid, q2Invalid = setGraphs(form, query, query2)
     session['qu'] = query
     if not query2 == "":
       session['qu2'] = query2
     # print q1Invalid, q2Invalid
-    if not q1Invalid and not q2Invalid:
-      return redirect('/results')
+    # if not q1Invalid and not q2Invalid:
+      # return redirect('/results')
   
   return render_template('index.html',
                          title='Home',
-                         q1Invalid=q1Invalid,
-                         q2Invalid=q2Invalid,
                          form=form)
 
 @app.route('/results', methods=['GET', 'POST'])
@@ -92,7 +90,14 @@ def results():
     query2 = session['qu2']
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)
-  return str(d[1][1])
+  count = 30
+  t = Twitter()
+  a = t.getTweets(query, count)
+  d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
+  
+  if not query2 == "":
+    a = t.getTweets(query2, count)
+    d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
   
   q1Invalid = False
   q2Invalid = False
@@ -102,7 +107,7 @@ def results():
     query2 = str(form.opQuery.data.replace('#','').strip())
     if query == "" or query is None:
       return redirect('/index')
-    q1Invalid, q2Invalid = setGraphs(form, query, query2)
+    # q1Invalid, q2Invalid = setGraphs(form, query, query2)
     session['qu'] = query
     if not query2 == "":
       session['qu2'] = query2
@@ -121,16 +126,12 @@ def results():
                            q2=query2,
                            data=dataList,
                            data2=dataList2,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
                            form=form)
   d = [[]]
   return render_template('results.html',
                            title='Results',
                            q=query,
                            data=dataList,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
                            form=form)
 
 @app.route('/about')

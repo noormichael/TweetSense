@@ -92,7 +92,7 @@ def results():
     query2 = session['qu2']
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)
-  return d[1][1]
+  return d==None
   
   q1Invalid = False
   q2Invalid = False

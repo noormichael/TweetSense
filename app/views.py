@@ -107,6 +107,8 @@ def results():
   query = session['qu']
   if not session['qu2'] == "":
     query2 = session['qu2']
+  else:
+    query2 = ""
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)
   count = 30

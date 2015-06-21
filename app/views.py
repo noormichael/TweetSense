@@ -5,9 +5,6 @@ from Twitter import Twitter
 from Analysis import analyze
 from RandomTopic import get_random_topic
 
-
-
-
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
 
@@ -47,32 +44,23 @@ def setGraphs(form, q, q2):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-  
-  query = ""
-  query2 = ""
-  
-  q1Invalid = False
-  q2Invalid = False
+  session['qu'] = ""
+  session['qu2'] = ""
   form = LoginForm()
   if form.validate_on_submit():
-    query = str(form.query.data.replace('#','').strip())
-    query2 = str(form.opQuery.data.replace('#','').strip())
+    session['qu'] = str(form.query.data.replace('#','').strip())
+    session['qu2'] = str(form.opQuery.data.replace('#','').strip())
     # q1Invalid, q2Invalid = setGraphs(form, query, query2)
-    session['qu'] = query
-    if not query2 == "":
-      session['qu2'] = query2
-    else:
-      session['qu2'] = ""
     
     t = Twitter()
     
-    if not t.checkTerm(query):
+    if not t.checkTerm(session['qu']):
       return render_template('index.html',
                          title='Home',
                          form=form)
 
-    if not query2 == "":
-      if not t.checkTerm(query2):
+    if not session['qu2'] == "":
+      if not t.checkTerm(session['qu2']):
         return render_template('index.html',
                          title='Home',
                          form=form)
@@ -87,9 +75,6 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-  
-  query = ""
-  query2 = ""
   d = [[]]
   d2 = [[]]
 
@@ -99,57 +84,42 @@ def results():
   # print "Query 2: %s" % query2
   # print "d: ",d
   # print "d2: ",d2
-  
-  query = session['qu']
-  if not session['qu2'] == "":
-    query2 = session['qu2']
-  else:
-    query2 = ""
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)
   count = 30
   t = Twitter()
-  a = t.getTweets(query, count)
+  a = t.getTweets(session['qu'], count)
   d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
   
-  if not query2 == "":
-    a = t.getTweets(query2, count)
+  if not session['qu2'] == "":
+    a = t.getTweets(session['qu2'], count)
     d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
   
-  q1Invalid = False
-  q2Invalid = False
   form = LoginForm()
   if form.validate_on_submit():
-    query = str(form.query.data.replace('#','').strip())
-    query2 = str(form.opQuery.data.replace('#','').strip())
-    if query == "" or query is None:
+    session['qu'] = str(form.query.data.replace('#','').strip())
+    session['qu2'] = str(form.opQuery.data.replace('#','').strip())
+    if session['qu'] == "":
       return redirect('/index')
     # q1Invalid, q2Invalid = setGraphs(form, query, query2)
-    session['qu'] = query
-    if not query2 == "":
-      session['qu2'] = query2
-    else:
-      session['qu2'] = ""
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)
-  if not query2 == "":
+  if not session['qu2'] == "":
     
     dataList2 = listtups_to_listlists(d2)
 
-    d2 = [[]]
-    d = [[]]
     return render_template('results.html',
                            title='Results',
-                           q=query,
-                           q2=query2,
+                           q=session['qu'],
+                           q2=session['qu2'],
                            data=dataList,
                            data2=dataList2,
                            form=form)
-  d = [[]]
+  
   return render_template('results.html',
                            title='Results',
-                           q=query,
+                           q=session['qu'],
                            data=dataList,
                            form=form)
 

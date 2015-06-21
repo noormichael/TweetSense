@@ -7,7 +7,7 @@ from RandomTopic import get_random_topic
 
 query = ""
 query2 = ""
-d = [['h']]
+d = [[]]
 d2 = [[]]
 
 def listtups_to_listlists(lt):
@@ -81,6 +81,9 @@ def index():
     # if not q1Invalid and not q2Invalid:
     # IMPLEMENT CHECK ON QUERIES
     return redirect('/results')
+  return render_template('index.html',
+                         title='Home',
+                         form=form)
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():

@@ -29,6 +29,8 @@ def setGraphs(form, q, q2):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+  q1Invalid = False
+  q2Invalid = False
   session['qu'] = ""
   session['qu2'] = ""
   

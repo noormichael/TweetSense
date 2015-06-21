@@ -64,7 +64,7 @@ def index():
     if not query2 == "":
       session['qu2'] = query2
     else:
-      session['q2'] = ""
+      session['qu2'] = ""
     
     t = Twitter()
     
@@ -133,7 +133,7 @@ def results():
     if not query2 == "":
       session['qu2'] = query2
     else:
-      session['q2'] = ""
+      session['qu2'] = ""
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)

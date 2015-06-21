@@ -5,10 +5,8 @@ from Twitter import Twitter
 from Analysis import analyze
 from RandomTopic import get_random_topic
 
-query = ""
-query2 = ""
-d = [[]]
-d2 = [[]]
+
+
 
 def listtups_to_listlists(lt):
   return [[x, y] for (x, y) in lt]
@@ -53,6 +51,10 @@ def index():
   global query2
   global d
   global d2
+  
+  query = ""
+  query2 = ""
+  
   q1Invalid = False
   q2Invalid = False
   form = LoginForm()
@@ -96,6 +98,8 @@ def results():
   
   query = ""
   query2 = ""
+  d = [[]]
+  d2 = [[]]
 
   # print ""
   # print "/results:"

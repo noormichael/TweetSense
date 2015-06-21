@@ -63,14 +63,22 @@ def index():
     session['qu'] = query
     if not query2 == "":
       session['qu2'] = query2
+    
+    if not t.checkTerm(query):
+      return render_template('index.html',
+                         title='Home',
+                         form=form)
+
+    if not query2 == "":
+      if not t.checkTerm(query2):
+        return render_template('index.html',
+                         title='Home',
+                         form=form)
+    
     # print q1Invalid, q2Invalid
     # if not q1Invalid and not q2Invalid:
     # IMPLEMENT CHECK ON QUERIES
     return redirect('/results')
-  
-  return render_template('index.html',
-                         title='Home',
-                         form=form)
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():

@@ -53,6 +53,8 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
+  q1Invalid = False
+  q2Invalid = False
   d = [[]]
   d2 = [[]]
 

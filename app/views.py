@@ -103,7 +103,7 @@ def results():
   # print "d2: ",d2
   
   query = session['qu']
-  if not query2 == "":
+  if not session['qu2'] == "":
     query2 = session['qu2']
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)

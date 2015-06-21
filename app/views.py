@@ -31,6 +31,9 @@ def setGraphs(form, q, q2):
 def index():
   session['qu'] = ""
   session['qu2'] = ""
+  q1Invalid = False
+  q2Invalid = False
+  
   form = LoginForm()
   if form.validate_on_submit():
     session['qu'] = str(form.query.data.replace('#','').strip())

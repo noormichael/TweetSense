@@ -7,7 +7,7 @@ from RandomTopic import get_random_topic
 
 query = ""
 query2 = ""
-d = [[]]
+d = [['h']]
 d2 = [[]]
 
 def listtups_to_listlists(lt):
@@ -92,7 +92,7 @@ def results():
     query2 = session['qu2']
     
   # return result = "\n".join("\t".join(map(str,l)) for l in d)
-  return d==None
+  return d[0][0]
   
   q1Invalid = False
   q2Invalid = False

@@ -81,40 +81,8 @@ def results():
     session['qu2'] = str(form.opQuery.data.replace('#','').strip())
     if session['qu'] == "":
       return redirect('/index')
-    # q1Invalid, q2Invalid = setGraphs(form, query, query2)
-    t = Twitter()
-    
-    if not t.checkTerm(session['qu']):
-      if not session['qu2'] == "" and not t.checkTerm(session['q2']):
-        return render_template('results.html',
-                           title='Results',
-                           q=query,
-                           q2=query2,
-                           data=dataList,
-                           data2=dataList2,
-                           q1Invalid=True,
-                           q2Invalid=True,
-                           form=form)
-      return render_template('results.html',
-                           title='Results',
-                           q=query,
-                           data=dataList,
-                           q1Invalid=True,
-                           q2Invalid=False,
-                           form=form)
+    q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
 
-    if not session['qu2'] == "":
-      if not t.checkTerm(session['qu2']):
-        return render_template('results.html',
-                           title='Results',
-                           q=query,
-                           q2=query2,
-                           data=dataList,
-                           data2=dataList2,
-                           q1Invalid=False,
-                           q2Invalid=True,
-                           form=form)
-    
     return redirect('/results')
 
   dataList = listtups_to_listlists(d)
@@ -128,12 +96,16 @@ def results():
                            q2=session['qu2'],
                            data=dataList,
                            data2=dataList2,
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
                            form=form)
   
   return render_template('results.html',
                            title='Results',
                            q=session['qu'],
                            data=dataList,
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
                            form=form)
 
 @app.route('/about')

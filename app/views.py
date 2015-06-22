@@ -69,11 +69,11 @@ def results():
   count = 30
   t = Twitter()
   d = None
+  d2 = None
   a = t.getTweets(session['qu'], count)
   d = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
   
   if not session['qu2'] == "":
-    d = None
     a = t.getTweets(session['qu2'], count)
     d2 = analyze(a, [float(i)/24.0 for i in range(-10*24, +3*24)])
   

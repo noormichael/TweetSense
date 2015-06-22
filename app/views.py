@@ -57,8 +57,8 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-  q1Invalid = False
-  q2Invalid = False
+  session['q1Invalid'] = False
+  session['q2Invalid'] = False
   d = [[]]
   d2 = [[]]
 
@@ -88,7 +88,7 @@ def results():
     
     if session['qu'] == "":
       return redirect('/index')
-    q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
+    session['q1Invalid'], session['q2Invalid'] = setGraphs(form, session['qu'], session['qu2'])
 
     return redirect('/results')
 
@@ -103,16 +103,16 @@ def results():
                            q2=session['qu2'],
                            data=dataList,
                            data2=dataList2,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
+                           q1Invalid=session['q1Invalid'],
+                           q2Invalid=session['q2Invalid'],
                            form=form)
   
   return render_template('results.html',
                            title='Results',
                            q=session['qu'],
                            data=dataList,
-                           q1Invalid=q1Invalid,
-                           q2Invalid=q2Invalid,
+                           q1Invalid=session['q1Invalid'],
+                           q2Invalid=session['q2Invalid'],
                            form=form)
 
 @app.route('/about')

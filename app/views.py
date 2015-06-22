@@ -90,7 +90,8 @@ def results():
       return redirect('/index')
     q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
 
-    return redirect('/results')
+    if not q1Invalid and not q2Invalid:
+      return redirect('/results')
 
   dataList = listtups_to_listlists(d)
   if not session['qu2'] == "":

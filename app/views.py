@@ -82,8 +82,6 @@ def results():
     session['qu'] = str(form.query.data.replace('#','').strip())
     session['qu2'] = str(form.opQuery.data.replace('#','').strip())
     
-    return session['qu']
-    
     if session['qu'] == "":
       return redirect('/index')
     q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])

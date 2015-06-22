@@ -103,16 +103,16 @@ def results():
                            q2=session['qu2'],
                            data=dataList,
                            data2=dataList2,
-                           q1Invalid=session['q1Invalid'],
-                           q2Invalid=session['q2Invalid'],
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
                            form=form)
   
   return render_template('results.html',
                            title='Results',
                            q=session['qu'],
                            data=dataList,
-                           q1Invalid=session['q1Invalid'],
-                           q2Invalid=session['q2Invalid'],
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
                            form=form)
 
 @app.route('/about')

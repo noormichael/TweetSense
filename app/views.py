@@ -77,6 +77,7 @@ def results():
   
   form = LoginForm()
   if form.validate_on_submit():
+    session['qu'] = ""
     session['qu2'] = ""
     session['qu'] = str(form.query.data.replace('#','').strip())
     session['qu2'] = str(form.opQuery.data.replace('#','').strip())

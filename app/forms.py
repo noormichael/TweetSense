@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, Optional
 
 
 class LoginForm(Form):
-    query = StringField('query', validators=[DataRequired()])
+    query = StringField('query')
     opQuery = StringField('opQuery')
 
 class RandomForm(Form):

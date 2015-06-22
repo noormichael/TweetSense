@@ -90,7 +90,8 @@ def results():
       return redirect('/index')
     q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
     
-    return str(q1Invalid)
+    if q1Invalid:
+      return "True"
 
     return redirect('/results')
 

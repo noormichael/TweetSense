@@ -92,6 +92,25 @@ def results():
 
     if not q1Invalid and not q2Invalid:
       return redirect('/results')
+    else:
+      if not session['qu2'] == "":
+        return render_template('results.html',
+                           title='Results',
+                           q=session['qu'],
+                           q2=session['qu2'],
+                           data=dataList,
+                           data2=dataList2,
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
+                           form=form)
+      else:
+        return render_template('results.html',
+                           title='Results',
+                           q=session['qu'],
+                           data=dataList,
+                           q1Invalid=q1Invalid,
+                           q2Invalid=q2Invalid,
+                           form=form)
 
   dataList = listtups_to_listlists(d)
   if not session['qu2'] == "":

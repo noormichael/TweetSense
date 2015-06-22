@@ -57,8 +57,8 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-  session['q1Invalid'] = False
-  session['q2Invalid'] = False
+  q1Invalid = False
+  q2Invalid = False
   d = [[]]
   d2 = [[]]
 
@@ -88,7 +88,7 @@ def results():
     
     if session['qu'] == "":
       return redirect('/index')
-    session['q1Invalid'], session['q2Invalid'] = setGraphs(form, session['qu'], session['qu2'])
+    q1Invalid, q2Invalid = setGraphs(form, session['qu'], session['qu2'])
 
     return redirect('/results')
 
